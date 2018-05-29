@@ -1,0 +1,17 @@
+<h1 class="d-sm-inline-block"><%= resource %></h1>
+
+<hr>
+
+<% editable_attributes.each do |attribute| -%>
+	<div class="attribute-line">
+    	<%= attribute[:name].capitalize %> :
+		<%= "<%= @#{resource}.#{attribute[:name]} %%>" %>
+	</div>
+<% end -%>
+
+
+<hr>
+
+<%= "<%= link_to 'Edit', [:edit, :superuser, @#{resource}], class: 'btn btn-primary' %%>" %>
+
+<%= "<%= link_to 'Back', [:superuser, :#{resources}], class: 'btn btn-secondary' %%>" %>

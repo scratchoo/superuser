@@ -1,0 +1,25 @@
+<%= "<%= form_for [:superuser, #{resource}] do |f| %%>" %>
+
+    <%= "<% if #{resource}.errors.any? %%>" %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h3 class="error_title"><%= "<%= pluralize(#{resource}.errors.count, 'error') %%>" %> prohibited this resource from being saved:</h3>
+
+        <ul>
+          <%= "<% #{resource}.errors.full_messages.each do |message| %%>" %>
+            <li><%= "<%= message %%>" %></li>
+          <%= "<% end %%>" %>
+        </ul>
+      </div>
+    <%= "<% end %%>" %>
+
+    <% editable_attributes.each do |attribute| %>
+      <div class="form-group">
+        <%= "<%= f.label :#{attribute[:name]} %%>" %>
+        <%= "<%= f.#{field_type(attribute[:type])} :#{attribute[:name]}, class: \"form-control\" %%>" %>
+      </div>
+    <% end -%>
+
+  <%= "<%= f.submit (#{resource}.new_record? ? 'Create resource' : 'Update resource'), class: 'btn btn-info btn-lg' %%>" %>
+
+
+<%= "<% end %%>" %>

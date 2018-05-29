@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate superuser Thing
+
+    This will create:
+        what/will/it/create

@@ -1,0 +1,64 @@
+<h1 class="d-sm-inline-block"><%= resources %></h1>
+
+<%#= without method_messing available as helper, it should be [main_app, :new, :superuser, @model.table_name.singularize]  %>
+<%= "<%= link_to 'Add new resource', [:new, :superuser, :#{resource}], class: 'btn btn-info float-sm-right' %%>" %>
+
+<%= "<%= render 'shared/search', obj: '#{resources}' %%>" %>
+
+<div class="table-responsive">
+
+	<table class="table my-3">
+
+	  <thead class="thead-light">
+
+	    <tr>
+	        <% editable_attributes.each do |attribute| -%>
+	          <th><%= attribute[:name] %></th>
+	        <% end -%>
+	        <th></th>
+
+	    </tr>
+
+	  </thead>
+
+	  <tbody>
+
+	      <%= "<% @#{resources}.each do |#{resource}| %%>" %>
+
+	          <tr>
+
+	            <% editable_attributes.each do |attribute| -%>
+	              <td><%= "<%= #{resource}[:#{attribute[:name]}] %%>" %></td>
+	            <% end -%>
+
+	            <td class="text-right">
+
+
+	                <div class="dropdown">
+	                    <button class="btn btn-secondary dropdown-toggle p-1 px-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                        Actions
+	                    </button>
+	                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+	                        <div><%= "<%= link_to 'Show', [:superuser, #{resource}], class: 'dropdown-item' %%>" %></div>
+	                        <div><%= "<%= link_to 'Edit', [:edit, :superuser, #{resource}], class: 'dropdown-item' %%>" %></div>
+	                        <div><%= "<%= link_to 'Delete', [:superuser, #{resource}], method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %%>" %></div>
+	                    </div>
+	                </div>
+
+	            </td>
+
+	          </tr>
+
+	      <%= '<% end %%>' %>
+
+	  </tbody>
+
+	</table>
+
+</div>
+
+<hr class="mb-4">
+
+<div class="kaminari_pagination text-center">
+    <%= "<%= paginate @#{resources} %%>" %>
+</div>
