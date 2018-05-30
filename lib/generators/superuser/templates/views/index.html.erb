@@ -3,7 +3,7 @@
 <%#= without method_messing available as helper, it should be [main_app, :new, :superuser, @model.table_name.singularize]  %>
 <%= "<%= link_to 'Add new #{resource}', [:new, :superuser, :#{resource}], class: 'btn btn-info float-sm-right' %%>" %>
 
-<%= "<%= render 'shared/search', obj: '#{resources}' %%>" %>
+<%= "<%= render 'shared/superuser/search', obj: '#{resources}' %%>" %>
 
 <div class="table-responsive">
 

@@ -1,8 +1,21 @@
 Description:
-    Explain the generator
+    Generate scaffolding for you rails admin area using the command "rails g superuser name_of_your_resource"
 
 Example:
-    rails generate superuser Thing
+    rails generate superuser users
 
     This will create:
-        what/will/it/create
+        controllers/superuser/users_controller.rb
+        views/superuser/index.html.erb
+        views/superuser/new.html.erb
+        views/superuser/show.html.erb
+        views/superuser/edit.html.erb
+        views/superuser/_form.html.erb
+
+    + will create some base/shared files if they don't exists:
+        assets/javascripts/superuser/application.js
+        assets/stylesheets/superuser/application.scss
+        controllers/superuser/base_controller.rb
+        controllers/superuser/dashboard_controller.rb
+        views/layouts/superuser/application.html.erb
+        views/shared/_search.html.erb

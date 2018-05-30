@@ -4,7 +4,7 @@ module Superuser
 
         # List all the (only) actions so it won't be applied to user's custom actions
 
-        before_action :set_resource, only: [:show, :edit, :update, :destroy]
+        before_action :set_<%= resource %>, only: [:show, :edit, :update, :destroy]
 
         # GET /<%= resources %>
         def index
@@ -41,7 +41,7 @@ module Superuser
         # POST /<%= resources %>
         def create
 
-            @<%= resource %> = <%= get_model %>.new(resource_params)
+            @<%= resource %> = <%= get_model %>.new(<%= resource %>_params)
 
             if @<%= resource %>.save
 
@@ -58,7 +58,7 @@ module Superuser
         # PATCH/PUT /<%= resources %>/1
         def update
 
-            if @<%= resource %>.update(resource_params)
+            if @<%= resource %>.update(<%= resource %>_params)
 
                 redirect_to [:superuser, @<%= resource %>], notice: "<%= resource %> was successfully updated."
 
@@ -84,14 +84,14 @@ module Superuser
 
 
             # Only allow a trusted parameter "white list" through.
-            def resource_params
+            def <%= resource %>_params
 
 				params.require(:<%= resource %>).permit(<%= editable_attributes.map { |a| ":" + a[:name] }.join(', ') %>)
 
             end
 
 
-            def set_resource
+            def set_<%= resource %>
 
                 @<%= resource %> = <%= get_model %>.find(params[:id])
 

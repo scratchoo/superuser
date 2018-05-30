@@ -5,7 +5,7 @@ class SuperuserGenerator < Rails::Generators::Base
     attr_accessor :attributes
 
     # NOTE: the order of the following methods is important!
-    
+
     def generate_css_file
 
         if !File.exist?("app/assets/stylesheets/superuser/application.scss")
@@ -69,7 +69,7 @@ class SuperuserGenerator < Rails::Generators::Base
 
     def generate_search_form
 
-        template "views/_search.html.erb", "app/views/shared/_search.html.erb"
+        template "views/_search.html.erb", "app/views/shared/superuser/_search.html.erb"
 
     end
 
