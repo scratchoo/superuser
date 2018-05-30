@@ -19,7 +19,7 @@
       </div>
     <% end -%>
 
-  <%= "<%= f.submit (#{resource}.new_record? ? 'Create ' + #{resource}.class.name : 'Update ' + #{resource}.class.name), class: 'btn btn-info btn-lg' %%>" %>
+  <%= "<%= f.submit (#{resource}.new_record? ? 'Create #{resource}' : 'Update #{resource}'), class: 'btn btn-info btn-lg' %%>" %>
 
 
 <%= "<% end %%>" %>
