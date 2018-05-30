@@ -1,7 +1,7 @@
 <h1 class="d-sm-inline-block"><%= resources %></h1>
 
 <%#= without method_messing available as helper, it should be [main_app, :new, :superuser, @model.table_name.singularize]  %>
-<%= "<%= link_to 'Add new resource', [:new, :superuser, :#{resource}], class: 'btn btn-info float-sm-right' %%>" %>
+<%= "<%= link_to 'Add new #{resource}', [:new, :superuser, :#{resource}], class: 'btn btn-info float-sm-right' %%>" %>
 
 <%= "<%= render 'shared/search', obj: '#{resources}' %%>" %>
 

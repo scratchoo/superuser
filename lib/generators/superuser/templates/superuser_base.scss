@@ -115,7 +115,7 @@ body{
      font-size: 1.2rem;
  }
 
- .sidebar .sidebar_item{
+ .sidebar .sidebar_item, .sidebar .sidebar_dashboard_link{
     text-transform: capitalize;
     a{
         transition: 0.3s;

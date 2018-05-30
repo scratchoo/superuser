@@ -31,9 +31,9 @@
 
     <aside class="sidebar">
         <div class="">
+            <h2 class="sidebar_title">Resources</h2>
             <div class="sidebar_dashboard_link">
             </div>
-            <h2 class="sidebar_title">Resources</h2>
             <div class="sidebar_item">
                 <%#= link_to resources_name, [:superuser, :resources_name] %>
             </div>
@@ -63,15 +63,28 @@
     <!-- CDN for flatpickr.js -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- end CDN for flatpickr.js -->
+
     <script type="text/javascript">
-        // if input has class 'isdate' : show flatpickr < date without time >
-        $(".date-field").flatpickr();
-        // if input has class 'isdatetime' : show flatpickr < date with time (Hours + Minutes + Seconds) >
-        $(".datetime-field").flatpickr({
-            enableTime: true,
-            enableSeconds: true
-        });
+
+        (function() {
+
+            document.querySelector('.navbar-toggler').addEventListener('click', function(){
+        		body = document.getElementsByTagName('body')[0];
+        		body.classList.toggle('open-sidebar');
+        	});
+
+            // if input has class 'isdate' : show flatpickr < date without time >
+            $(".date-field").flatpickr();
+            // if input has class 'isdatetime' : show flatpickr < date with time (Hours + Minutes + Seconds) >
+            $(".datetime-field").flatpickr({
+                enableTime: true,
+                enableSeconds: true
+            });
+
+        })();
+
     </script>
+
 </body>
 
 </html>

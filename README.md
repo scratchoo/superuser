@@ -20,15 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command :
+Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command (note that the resource should be in plural):
 
 `rails g superuser users`
 
-## Development
+### Authorization
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+To prevent others from accessing the admin area, open the file controllers/superuser/base_controller.rb and find the method "authenticated_superuser", then put your condition there.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+E.g let say you have a column 'role' in your users table, the "authenticated_superuser" method may looks like the following:
+
+```ruby
+def authenticated_superuser
+    redirect_to root_url if !current_user || current_user.role != 'admin'
+end
+```
 
 ## Contributing
 

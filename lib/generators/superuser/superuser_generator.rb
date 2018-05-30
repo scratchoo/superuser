@@ -4,6 +4,8 @@ class SuperuserGenerator < Rails::Generators::Base
     argument :resources_name, type: :string
     attr_accessor :attributes
 
+    # NOTE: the order of the following methods is important!
+    
     def generate_css_file
 
         if !File.exist?("app/assets/stylesheets/superuser/application.scss")
@@ -17,6 +19,14 @@ class SuperuserGenerator < Rails::Generators::Base
         if !File.exist?("app/assets/javascripts/superuser/application.js")
         	copy_file "superuser_base.js", "app/assets/javascripts/superuser/application.js"
         	end
+
+    end
+
+    def generate_layout
+
+        if !File.exist?("app/views/layouts/superuser/application.html.erb")
+            template "views/layouts/application.html.erb", "app/views/layouts/superuser/application.html.erb"
+        end
 
     end
 
@@ -35,11 +45,7 @@ class SuperuserGenerator < Rails::Generators::Base
 
     end
 
-    def generate_layout
-
-        if !File.exist?("app/views/layouts/superuser/application.html.erb")
-            template "views/layouts/application.html.erb", "app/views/layouts/superuser/application.html.erb"
-        end
+    def generate_route_and_link
 
         # add resources to route if not exists
         route_replacement = "resources :#{resources}"
