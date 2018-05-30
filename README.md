@@ -22,7 +22,11 @@ Or install it yourself as:
 
 Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command (note that the resource should be in plural):
 
-`rails g superuser users`
+```ruby
+rails g superuser users
+```
+
+Now go to `localhost:3000/superuser` (NOTE: currently the `/superuser` url is accessible only after you generate your first resource)
 
 ### Authorization
 
