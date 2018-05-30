@@ -44,7 +44,7 @@ end
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/superuser.
+Bug reports and pull requests are welcome on GitHub at https://github.com/scratchoo/superuser.
 
 ## License
 
