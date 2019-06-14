@@ -27,7 +27,7 @@ module Superuser
 
 			    val = (operator == 'LIKE' ? "%#{params[:search_value]}%" : params[:search_value])
 
-			    pagy, results = pagy(model..where("cast(#{params[:search_field]} as text) #{operator} ?", val))
+			    pagy, results = pagy(model.where("cast(#{params[:search_field]} as text) #{operator} ?", val))
 
 			    flash.now[:warning] = "Sorry! cannot find any #{params[:search_field].upcase} with the value #{operator} '#{params[:search_value]}' :(" if results.blank?
 
