@@ -11,7 +11,7 @@ module Superuser
 
             if params[:search]
 
-                @pagy, @<%= resources %> = pagy(run_search(<%= get_model %>))
+                @pagy, @<%= resources %> = run_search(<%= get_model %>)
 
             else
 
