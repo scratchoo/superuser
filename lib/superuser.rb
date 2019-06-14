@@ -1,5 +1,6 @@
 require "superuser/version"
-require "kaminari"
+require "pagy"
+require 'pagy/extras/bootstrap'
 
 module Superuser
   # Your code goes here...
