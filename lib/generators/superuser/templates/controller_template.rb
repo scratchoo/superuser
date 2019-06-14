@@ -11,11 +11,11 @@ module Superuser
 
             if params[:search]
 
-                @<%= resources %> = run_search(<%= get_model %>)
+                @pagy, @<%= resources %> = pagy(run_search(<%= get_model %>))
 
             else
 
-                @<%= resources %> = <%= get_model %>.page(params[:page]).per(10)
+                @pagy, @<%= resources %> = pagy(<%= get_model %>.all)
 
             end
 
