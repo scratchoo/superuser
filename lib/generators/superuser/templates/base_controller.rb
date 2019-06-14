@@ -19,39 +19,37 @@ module Superuser
 				# example: redirect_to root_url if !current_user || current_user.role != 'admin'
 			end
 
-	        def run_search(model)
+			def run_search(model)
 
-	            search_map = {'gt': '>', 'lt': '<', 'gte': '>=', 'lte': '<=', 'equal': '=', 'like': 'LIKE'}
+			    search_map = {'gt': '>', 'lt': '<', 'gte': '>=', 'lte': '<=', 'equal': '=', 'like': 'LIKE'}
 
-	            operator = search_map[params[:operator].downcase.to_sym]
+			    operator = search_map[params[:operator].downcase.to_sym]
 
-	            val = (operator == 'LIKE' ? "%#{params[:search_value]}%" : params[:search_value])
+			    val = (operator == 'LIKE' ? "%#{params[:search_value]}%" : params[:search_value])
 
-	            results = model
-	                            .where("cast(#{params[:search_field]} as text) #{operator} ?", val)
-	                            .page(params[:page]).per(10)
+			    pagy, results = pagy(model..where("cast(#{params[:search_field]} as text) #{operator} ?", val))
 
-	            flash.now[:warning] = "Sorry! cannot find any #{params[:search_field].upcase} with the value #{operator} '#{params[:search_value]}' :(" if results.blank?
+			    flash.now[:warning] = "Sorry! cannot find any #{params[:search_field].upcase} with the value #{operator} '#{params[:search_value]}' :(" if results.blank?
 
-	            return results
+			    return [pagy, results]
 
-	        end
+			end
 
 			def flash_class(key)
 
-            	case key
+			    case key
 
-		            when "success" then "alert alert-success"
+				    when "success" then "alert alert-success"
 
-		            when "warning" then "alert alert-warning"
+				    when "warning" then "alert alert-warning"
 
-		            when "notice" then "alert alert-info"
+				    when "notice" then "alert alert-info"
 
-		            when "alert" then "alert alert-danger"
+				    when "alert" then "alert alert-danger"
 
-	            end
+			    end
 
-	        end
+			end
 
 			helper_method :flash_class
 
