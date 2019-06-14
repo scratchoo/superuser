@@ -8,6 +8,7 @@ module Superuser
 	    	include Pagy::Backend
         	include Pagy::Frontend
         	helper_method :pagy_bootstrap_nav # make pagy_bootstrap_nav available for views
+	    	Pagy::VARS[:items] = 20 # items per page
 
 		before_action :authenticated_superuser
 
