@@ -3,6 +3,11 @@ module Superuser
     class BaseController < ApplicationController
 
 		layout 'superuser/application'
+	    
+	    	# include Pagy (backend and frontend) for pagination
+	    	include Pagy::Backend
+        	include Pagy::Frontend
+        	helper_method :pagy_bootstrap_nav # make pagy_bootstrap_nav available for views
 
 		before_action :authenticated_superuser
 
