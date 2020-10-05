@@ -4,11 +4,10 @@
 
 <% editable_attributes.each do |attribute| -%>
 	<div class="attribute-line">
-    	<%= attribute[:name].capitalize %> :
+    <%= attribute[:name].capitalize %> :
 		<%= "<%= @#{resource}.#{attribute[:name]} %%>" %>
 	</div>
 <% end -%>
-
 
 <hr>
 

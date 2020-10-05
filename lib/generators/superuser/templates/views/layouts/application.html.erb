@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <title>Super User <%= '<%= controller_name %%>' %>#<%= '<%= action_name %%>' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <%= '<%= stylesheet_link_tag    "superuser/application", media: "all" %%>' %>
-    <%= '<%= javascript_include_tag "superuser/application" %%>' %>
+
+<% if for_webpack_native -%>
+    <%= '<%= webpack_stylesheet_url "superuser", media: "all", "data-turbolinks-track": "reload" %%>' %>
+    <%= '<%= webpack_javascript_url "superuser", "data-turbolinks-track": "reload" %%>' %>
+<% else -%>
+    <%= stylesheet_link_tag    "superuser/application", media: "all" %>
+    <%= javascript_include_tag "superuser/application" %>
+<% end -%>
+
     <!-- CDN for flatpickr.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- end CDN for flatpickr.css -->
     <%= '<%= csrf_meta_tags %%>' %>
+  </head>
 
-</head>
-
-<body class="superuser">
+  <body class="superuser">
 
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top">
-
-            <%= '<%= link_to [:superuser, :root], class: "navbar-brand" do %%>' %>
-                <span class="logo_part_1">Super</span><span class="logo_part_2">user</span>
-            <%= '<% end %%>' %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+      <nav class="navbar navbar-expand-sm navbar-light fixed-top">
+        <%= '<%= link_to [:superuser, :root], class: "navbar-brand" do %%>' %>
+          <span class="logo_part_1">Super</span><span class="logo_part_2">user</span>
+        <%= '<% end %%>' %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
     </header>
 
     <aside class="sidebar">
-        <div class="">
-            <h2 class="sidebar_title">Resources</h2>
-            <div class="sidebar_dashboard_link">
-            </div>
-            <div class="sidebar_item">
-                <%#= link_to resources_name, [:superuser, :resources_name] %>
-            </div>
+      <div class="">
+        <h2 class="sidebar_title">Resources</h2>
+        <div class="sidebar_dashboard_link">
         </div>
+        <div class="sidebar_item">
+          <%#= link_to resources_name, [:superuser, :resources_name] %>
+        </div>
+      </div>
     </aside>
 
     <div class="main-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    <div class="content">
-						<%= "<% flash.each do |key, value| %%>" %>
-                            <div class="alert alert-<%= '<%= flash_class(key) %%>' %>"><%= '<%= value %%>' %></div>
-                        <%= "<% end %%>" %>
-                        <%= '<%= yield %%>' %>
-                    </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="content">
+		          <%= "<% flash.each do |key, value| %%>" %>
+                <div class="alert alert-<%= '<%= flash_class(key) %%>' %>">
+                  <%= '<%= value %%>' %>
                 </div>
+              <%= "<% end %%>" %>
+              <%= '<%= yield %%>' %>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -65,26 +71,21 @@
     <!-- end CDN for flatpickr.js -->
 
     <script type="text/javascript">
-
-        (function() {
-
-            document.querySelector('.navbar-toggler').addEventListener('click', function(){
-        		body = document.getElementsByTagName('body')[0];
-        		body.classList.toggle('open-sidebar');
-        	});
-
-            // if input has class 'isdate' : show flatpickr < date without time >
-            $(".date-field").flatpickr();
-            // if input has class 'isdatetime' : show flatpickr < date with time (Hours + Minutes + Seconds) >
-            $(".datetime-field").flatpickr({
-                enableTime: true,
-                enableSeconds: true
-            });
-
-        })();
-
+      (function() {
+        document.querySelector('.navbar-toggler').addEventListener('click', function(){
+    		  body = document.getElementsByTagName('body')[0];
+    		  body.classList.toggle('open-sidebar');
+    	  });
+        // if input has class 'isdate' : show flatpickr < date without time >
+        $(".date-field").flatpickr();
+        // if input has class 'isdatetime' : show flatpickr < date with time (Hours + Minutes + Seconds) >
+        $(".datetime-field").flatpickr({
+          enableTime: true,
+          enableSeconds: true
+        });
+      })();
     </script>
 
-</body>
+  </body>
 
 </html>

@@ -1,31 +1,28 @@
 <div class="card p-2 p-md-4">
 
-    <div class="card-title">
-        Search :
-    </div>
+  <div class="card-title">
+    Search :
+  </div>
 
-    <div class="text-center">
+  <div class="text-center">
+    <%= "<%= form_tag [:superuser, obj], method: :get, class: 'search_form' do %%>" %>
 
-        <%= "<%= form_tag [:superuser, obj], method: :get, class: 'search_form' do %%>" %>
+      <span class="condition-label">Condition :</span>
 
-            <span class="condition-label">Condition :</span>
+      <%= """
+        <%
+            options = []
+            obj.classify.constantize.column_names.each do |column_name|
+                options << column_name
+            end
+        %%>
+      """ %>
+      <%= "<%= hidden_field_tag :search, 'true' %%>" %>
+      <%= "<%= select_tag :search_field, options_for_select(options, params[:search_field]), class: 'form-control d-inline-block' %%>" %>
+      <%= "<%= select_tag :operator, options_for_select({'Equal': 'equal', 'Like': 'like', '>': 'gt', '<': 'lt', '>=': 'gte', '<=': 'lte'}, params[:operator]), class: 'form-control d-inline-block' %%>" %>
+      <%= "<%= text_field_tag :search_value, params[:search_value], placeholder: 'Search Value...', class: 'form-control d-inline-block' %%>" %>
+      <%= "<%= submit_tag :Search, class: 'btn btn-success' %%>" %>
 
-            <%= """
-            <%
-                options = []
-                obj.classify.constantize.column_names.each do |column_name|
-                    options << column_name
-                end
-            %%>
-            """ %>
-            <%= "<%= hidden_field_tag :search, 'true' %%>" %>
-            <%= "<%= select_tag :search_field, options_for_select(options, params[:search_field]), class: 'form-control d-inline-block' %%>" %>
-            <%= "<%= select_tag :operator, options_for_select({'Equal': 'equal', 'Like': 'like', '>': 'gt', '<': 'lt', '>=': 'gte', '<=': 'lte'}, params[:operator]), class: 'form-control d-inline-block' %%>" %>
-            <%= "<%= text_field_tag :search_value, params[:search_value], placeholder: 'Search Value...', class: 'form-control d-inline-block' %%>" %>
-            <%= "<%= submit_tag :Search, class: 'btn btn-success' %%>" %>
-
-        <%= "<% end %%>" %>
-
-
-    </div>
+    <%= "<% end %%>" %>
+  </div>
 </div>

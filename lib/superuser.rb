@@ -1,5 +1,5 @@
 require "superuser/version"
-require "kaminari"
+require "pagy"
 
 module Superuser
   # Your code goes here...

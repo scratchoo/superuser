@@ -1,10 +1,8 @@
 module Superuser
 
-    class DashboardController < BaseController
-
-        def index
-        end
-
+  class DashboardController < BaseController
+    def index
     end
+  end
 
 end

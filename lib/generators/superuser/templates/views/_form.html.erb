@@ -3,7 +3,6 @@
     <%= "<% if #{resource}.errors.any? %%>" %>
       <div id="error_explanation" class="alert alert-danger">
         <h3 class="error_title"><%= "<%= pluralize(#{resource}.errors.count, 'error') %%>" %> prohibited this resource from being saved:</h3>
-
         <ul>
           <%= "<% #{resource}.errors.full_messages.each do |message| %%>" %>
             <li><%= "<%= message %%>" %></li>
@@ -20,6 +19,5 @@
     <% end -%>
 
   <%= "<%= f.submit (#{resource}.new_record? ? 'Create #{resource}' : 'Update #{resource}'), class: 'btn btn-info btn-lg' %%>" %>
-
 
 <%= "<% end %%>" %>
