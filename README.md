@@ -22,10 +22,30 @@ Or install it yourself as:
 
 ## Usage
 
+The very first thing to do is to initialize some basic files for superuser as follows (**This should be done only once**):
+
+```
+rails g superuser:init frontend=webpacker
+```
+
+If you are using [webpack_native]() instead of webpacker, then you have to specify the frontend option to `webpack_native`:
+
+```
+rails g superuser:init frontend=webpack_native
+```
+
+Once the command below generate the necessary basic files, for every resources you have, you can generate a scaffold for it...
+
 Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command (note that the resource should be in plural):
 
 ```ruby
 rails g superuser users
+```
+
+You have another resources/table called posts? no problem just run:
+
+```ruby
+rails g superuser posts
 ```
 
 Now go to `localhost:3000/superuser` (NOTE: currently the `/superuser` url is accessible only after you generate your first resource)
