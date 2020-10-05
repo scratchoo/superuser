@@ -28,7 +28,7 @@ The very first thing to do is to initialize some basic files for superuser as fo
 rails g superuser:init frontend=webpacker
 ```
 
-If you are using [webpack_native]() instead of webpacker, then you have to specify the frontend option to `webpack_native`:
+If you are using [webpack_native](https://github.com/scratchoo/webpack_native) instead of webpacker, then you have to specify the frontend option to `webpack_native`:
 
 ```
 rails g superuser:init frontend=webpack_native
