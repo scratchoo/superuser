@@ -4,14 +4,14 @@ class Superuser::InitGenerator < Rails::Generators::Base
   argument :frontend, type: :string, default: 'webpacker'
 
   def generate_css_file
-    superuser_css_file = "#{stylesheets_folder()}/superuser/application.scss"
+    superuser_css_file = "#{stylesheets_folder()}/superuser.scss"
     if !File.exist?(superuser_css_file)
       copy_file "superuser_base.scss", superuser_css_file
     end
   end
 
   def generate_js_file
-    superuser_js_file = "#{javascripts_folder()}/superuser/application.js"
+    superuser_js_file = "#{javascripts_folder()}/superuser.js"
     if !File.exist?(superuser_js_file)
     	copy_file "superuser_base.js", superuser_js_file
     end
@@ -106,7 +106,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
       if for_webpack_native
         'app/webpack_native/src/javascripts'
       else
-        'app/javascript'
+        'app/javascript/packs'
       end
     end
 
