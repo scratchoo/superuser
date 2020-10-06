@@ -34,7 +34,7 @@ Or if you are using [webpack_native](https://github.com/scratchoo/webpack_native
 rails g superuser:init frontend=webpack_native
 ```
 
-(2) -Optional- To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` (or `app/webpack_native/superuser.js` if you are using webpackNative) then add the following:
+(2) -Optional- To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` (or `app/webpack_native/superuser.js` if you are using [webpack_native gem](https://github.com/scratchoo/webpack_native)) then add the following:
 
 ```
 require("@rails/ujs").start()
