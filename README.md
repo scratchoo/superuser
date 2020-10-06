@@ -22,26 +22,26 @@ Or install it yourself as:
 
 ## Usage
 
-The very first thing to do is to initialize some basic files for superuser as follows (**This should be done only once**):
+(1) The very first thing to do is to initialize some basic files for superuser as follows (**This should be done only once**):
 
 ```
 rails g superuser:init
 ```
 
-To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` then add the following:
+Or if you are using [webpack_native](https://github.com/scratchoo/webpack_native) instead of webpacker, then you have to specify the frontend option to `webpack_native`:
+
+```
+rails g superuser:init frontend=webpack_native
+```
+
+(2) -Optional- To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` (or app/webpack_native/superuser.js if you are using webpackNative) then add the following:
 
 ```
 require("@rails/ujs").start()
 require("turbolinks").start()
 ```
 
-If you are using [webpack_native](https://github.com/scratchoo/webpack_native) instead of webpacker, then you have to specify the frontend option to `webpack_native`:
-
-```
-rails g superuser:init frontend=webpack_native
-```
-
-Once the command below generate the necessary basic files, for every resources you have, you can generate a scaffold for it...
+(3) For every resources you have, you can generate a scaffold for it...
 
 Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command (note that the resource should be in plural):
 
