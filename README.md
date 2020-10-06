@@ -25,7 +25,14 @@ Or install it yourself as:
 The very first thing to do is to initialize some basic files for superuser as follows (**This should be done only once**):
 
 ```
-rails g superuser:init frontend=webpacker
+rails g superuser:init
+```
+
+To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` then add the following:
+
+```
+require("@rails/ujs").start()
+require("turbolinks").start()
 ```
 
 If you are using [webpack_native](https://github.com/scratchoo/webpack_native) instead of webpacker, then you have to specify the frontend option to `webpack_native`:
