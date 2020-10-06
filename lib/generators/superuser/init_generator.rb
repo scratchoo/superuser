@@ -1,7 +1,7 @@
 class Superuser::InitGenerator < Rails::Generators::Base
 
   source_root File.expand_path('../templates', __FILE__)
-  argument :frontend, type: :string
+  argument :frontend, type: :string, default: 'webpacker'
 
   def generate_css_file
     superuser_css_file = "#{stylesheets_folder()}/superuser/application.scss"
