@@ -111,7 +111,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
     end
 
     def add_layout_links(relative_file, search_text, replace_text)
-      path = destination_path(relative_file)
+      path = File.join(destination_root, relative_file)
       file_content = File.read(path)
 
       unless file_content.include? replace_text
