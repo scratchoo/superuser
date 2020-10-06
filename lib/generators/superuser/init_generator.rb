@@ -13,7 +13,11 @@ class Superuser::InitGenerator < Rails::Generators::Base
   def generate_js_file
     superuser_js_file = "#{javascripts_folder()}/superuser.js"
     if !File.exist?(superuser_js_file)
-    	copy_file "superuser_base.js", superuser_js_file
+      if for_webpack_native
+        copy_file "webpack_native_base.js", superuser_js_file
+      else
+    	  copy_file "superuser_base.js", superuser_js_file
+      end
     end
   end
 
@@ -61,7 +65,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
 
       webpack_config_file = "#{Rails.root}/app/webpack_native/webpack.config.js"
 
-      entry_line = "\n\t\t\tsuperuser: './src/javascripts/superuser/application.js',"
+      entry_line = "\n\t\t\tsuperuser: './src/javascripts/superuser.js',"
 
       path = File.join(destination_root, 'app/webpack_native/webpack.config.js')
       file_content = File.read(path)
