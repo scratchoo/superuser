@@ -5,7 +5,7 @@
   </div>
 
   <div class="text-center">
-    <%= "<%= form_tag [:superuser, obj], method: :get, class: 'search_form' do %%>" %>
+    <%= "<%= form_tag [:superuser, obj.to_sym], method: :get, class: 'search_form' do %%>" %>
 
       <span class="condition-label">Condition :</span>
 

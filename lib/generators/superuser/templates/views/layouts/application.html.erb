@@ -11,8 +11,8 @@
     <%= '<%= webpack_stylesheet_url "superuser", media: "all", "data-turbolinks-track": "reload" %%>' %>
     <%= '<%= webpack_javascript_url "superuser", "data-turbolinks-track": "reload" %%>' %>
 <% else -%>
-    <%= '<%= stylesheet_link_tag "superuser", media: "all" %%>' %>
-    <%= '<%= javascript_pack_tag "superuser" %%>' %>
+    <%= stylesheet_link_tag "superuser", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "superuser", "data-turbo-track": "reload", defer: true %>
 <% end -%>
 
     <!-- CDN for flatpickr.css -->

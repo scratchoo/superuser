@@ -16,11 +16,22 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install superuser
 
 ## Usage
+
+**Note:** This gem expect that you have a column `role` in your users table, which you could set to something like "admin" for admin users, if you don't yet, you can generate a migration file:
+
+```
+rails g migration add_role_to_users role:string
+```
+
+Then run that migration:
+
+```
+rails db:migrate
+```
+
+Now let's go to the details:
 
 (1) The very first thing to do is to initialize some basic files for superuser as follows (**This should be done only once**):
 
@@ -28,20 +39,33 @@ Or install it yourself as:
 rails g superuser:init
 ```
 
-Or if you are using [webpack_native](https://github.com/scratchoo/webpack_native) instead of webpacker, then you have to specify the frontend option to `webpack_native`:
+This will generate a bunch of view files, as well as a folder `/superuser` inside your `app/javascript`
+
+That folder contains a javascript and css file that are specific the administration area, so we need to compile them separately from the application ones
+
+Here is an example if you are using esbuild config file:
 
 ```
-rails g superuser:init frontend=webpack_native
+const context = await esbuild.context({
+    entryPoints: {
+        application: "./app/javascript/application.js",
+        superuser: "./app/javascript/superuser/superuser.js"
+    },
+    outdir: "./app/assets/builds",
+    bundle: true,
+    // ...
+    publicPath: '/assets'
+});
 ```
 
-(2) -Optional- To add ujs and turbolinks support to the admin area, open `app/javascript/packs/superuser.js` (or `app/webpack_native/superuser.js` if you are using [webpack_native gem](https://github.com/scratchoo/webpack_native)) then add the following:
+This above configuration will generate 2 build files "superuser.js" and superuser.css", the reason for that is that in the superuser gem layout `views/layouts/superuser/application.html.erb`, we are calling these 2 files:
 
 ```
-require("@rails/ujs").start()
-require("turbolinks").start()
+<%= stylesheet_link_tag "superuser", "data-turbo-track": "reload" %>
+<%= javascript_include_tag "superuser", "data-turbo-track": "reload", defer: true %>
 ```
 
-(3) For every resources you have, you can generate a scaffold for it...
+(2) For every resources you have, you can generate a scaffold for it...
 
 Let's imagine you have a resource :users and you want to generate the admin scaffolding for it, just type in the command (note that the resource should be in plural):
 

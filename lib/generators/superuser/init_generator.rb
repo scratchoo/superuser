@@ -56,7 +56,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
   end
 
   def generate_search_form
-    template "views/_search.html.erb", "app/views/shared/superuser/_search.html.erb"
+    template "views/_search.html.erb", "app/views/superuser/_search.html.erb"
   end
 
   # in case of user is using webpack_native gem then add an entry pointing to superuser "application" javascript file
@@ -102,7 +102,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
       if for_webpack_native
         'app/webpack_native/src/stylesheets'
       else
-        'app/assets/stylesheets'
+        'app/javascript/superuser'
       end
     end
 
@@ -110,7 +110,7 @@ class Superuser::InitGenerator < Rails::Generators::Base
       if for_webpack_native
         'app/webpack_native/src/javascripts'
       else
-        'app/javascript/packs'
+        'app/javascript/superuser'
       end
     end
 

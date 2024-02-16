@@ -14,7 +14,7 @@ module Superuser
     helper_method :pagy_nav
     helper_method :pagy_bootstrap_nav
     # pagy - Items per page
-    Pagy::VARS[:items] = 15
+    # Pagy::VARS[:items] = 15
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 		private
